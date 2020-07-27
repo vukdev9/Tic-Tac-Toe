@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.App {
+  text-align: center;
+}
+
+h4,
+h3 {
+  color: darkblue;
+}
+
+.square {
+  background-color: orange;
+  border: 2px solid darkblue;
+  font-size: 30px;
+  font-weight: "800";
+  outline: "none";
+}
+
+.board {
+  border: 4px solid darkblue;
+  border-radius: 10px;
+  width: 250px;
+  height: 250px;
+  margin: 50px auto;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+button {
+  font-size: 25px;
+  background-color: orange;
+  color: darkblue;
+}
+
+.displayPlayers {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  margin: 50px auto;
+  color: darkblue;
+}
+
+.twoPlayersButton {
+  margin: 20px;
+}
+
+.resetBtn {
+  font-size: 15px;
+}
