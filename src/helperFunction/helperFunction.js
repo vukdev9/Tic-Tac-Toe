@@ -63,131 +63,161 @@ export function getIndexByInputValue(value) {
 export function computerPlayer(board) {
   // ukoliko postoji mogucnost za pobedu
   if (
-    board[0] === "" &&
+    board[0] === null &&
     ((board[1] === "O" && board[2] === "O") ||
       (board[3] === "O" && board[6] === "O") ||
       (board[4] === "O" && board[8] === "O"))
   ) {
     board[0] = "O";
   } else if (
-    board[4] === "" &&
+    board[4] === null &&
     ((board[3] === "O" && board[5] === "O") ||
       (board[0] === "O" && board[8] === "O") ||
       (board[2] === "O" && board[6] === "O"))
   ) {
     board[4] = "O";
   } else if (
-    board[5] === "" &&
+    board[5] === null &&
     ((board[3] === "O" && board[4] === "O") ||
       (board[2] === "O" && board[8] === "O"))
   ) {
     board[5] = "O";
   } else if (
-    board[6] === "" &&
+    board[6] === null &&
     ((board[7] === "O" && board[8] === "O") ||
       (board[0] === "O" && board[3] === "O") ||
       (board[2] === "O" && board[4] === "O"))
   ) {
     board[6] = "O";
   } else if (
-    board[7] === "" &&
+    board[7] === null &&
     ((board[6] === "O" && board[8] === "O") ||
       (board[1] === "O" && board[4] === "O"))
   ) {
     board[7] = "O";
   } else if (
-    board[8] === "" &&
+    board[8] === null &&
     ((board[6] === "O" && board[7] === "O") ||
       (board[2] === "O" && board[5] === "O") ||
       (board[0] === "O" && board[4] === "O"))
   ) {
     board[8] = "O";
+  } else if (
+    board[1] === null &&
+    ((board[0] === "O" && board[2] === "O") ||
+      (board[4] === "O" && board[7] === "O"))
+  ) {
+    board[1] = "O";
+  } else if (
+    board[2] === null &&
+    ((board[0] === "O" && board[1] === "O") ||
+      (board[4] === "O" && board[6] === "O") ||
+      (board[5] === "O" && board[8] === "O"))
+  ) {
+    board[2] = "O";
+  } else if (
+    board[3] === null &&
+    ((board[0] === "O" && board[6] === "O") ||
+      (board[4] === "O" && board[5] === "O"))
+  ) {
+    board[3] = "O";
   }
   // ako mora da se blokira pobeda
   else if (
-    board[0] === "" &&
+    board[0] === null &&
     ((board[1] === "X" && board[2] === "X") ||
       (board[3] === "X" && board[6] === "X") ||
       (board[4] === "X" && board[8] === "X"))
   ) {
     board[0] = "O";
   } else if (
-    board[1] === "" &&
+    board[1] === null &&
     ((board[0] === "X" && board[2] === "X") ||
       (board[4] === "X" && board[7] === "X"))
   ) {
     board[1] = "O";
   } else if (
-    board[2] === "" &&
+    board[2] === null &&
     ((board[0] === "X" && board[1] === "X") ||
       (board[5] === "X" && board[8] === "X") ||
       (board[4] === "X" && board[6] === "X"))
   ) {
     board[2] = "O";
   } else if (
-    board[3] === "" &&
+    board[3] === null &&
     ((board[0] === "X" && board[6] === "X") ||
       (board[4] === "X" && board[5] === "X"))
   ) {
     board[3] = "O";
   } else if (
-    board[4] === "" &&
+    board[4] === null &&
     ((board[3] === "X" && board[5] === "X") ||
       (board[0] === "X" && board[8] === "X") ||
       (board[2] === "X" && board[6] === "X"))
   ) {
     board[4] = "O";
   } else if (
-    board[5] === "" &&
+    board[5] === null &&
     ((board[3] === "X" && board[4] === "X") ||
       (board[2] === "X" && board[8] === "X"))
   ) {
     board[5] = "O";
   } else if (
-    board[6] === "" &&
+    board[6] === null &&
     ((board[7] === "X" && board[8] === "X") ||
       (board[0] === "X" && board[3] === "X") ||
       (board[2] === "X" && board[4] === "X"))
   ) {
     board[6] = "O";
   } else if (
-    board[7] === "" &&
+    board[7] === null &&
     ((board[6] === "X" && board[8] === "X") ||
       (board[1] === "X" && board[4] === "X"))
   ) {
     board[7] = "O";
   } else if (
-    board[8] === "" &&
+    board[8] === null &&
     ((board[6] === "X" && board[7] === "X") ||
       (board[2] === "X" && board[5] === "X") ||
       (board[0] === "X" && board[4] === "X"))
   ) {
     board[8] = "O";
-  } else if (board[4] === "") {
+  } else if (
+    board[4] === null &&
+    (board[0] === "X" ||
+      board[2] === "X" ||
+      board[6] === "X" ||
+      board[8] === "X")
+  ) {
     board[4] = "O";
-  } else if (board[0] === "" && (board[2] === "X" || board[6] === "X")) {
+  } else if (
+    (board[0] === "X" && board[8] === "X") ||
+    (board[2] === "X" && board[6] === "X")
+  ) {
+    board[3] = "O";
+  } else if (board[0] === null && (board[2] === "X" || board[6] === "X")) {
     board[0] = "O";
-  } else if (board[2] === "" && (board[0] === "X" || board[8] === "X")) {
+  } else if (board[2] === null && (board[0] === "X" || board[8] === "X")) {
     board[2] = "O";
-  } else if (board[8] === "" && (board[2] === "X" || board[6] === "X")) {
+  } else if (board[8] === null && (board[2] === "X" || board[6] === "X")) {
     board[8] = "O";
-  } else if (board[6] === "" && (board[0] === "X" || board[8] === "")) {
+  } else if (board[6] === null && (board[0] === "X" || board[8] === null)) {
     board[6] = "O";
-  } else if (board[0] === "") {
+  } else if (board[0] === null) {
     board[0] = "O";
-  } else if (board[2] === "") {
+  } else if (board[2] === null) {
     board[2] = "O";
-  } else if (board[6] === "") {
+  } else if (board[6] === null) {
     board[6] = "O";
-  } else if (board[8] === "") {
+  } else if (board[8] === null) {
     board[8] = "O";
-  } else if (board[1] === "") {
+  } else if (board[1] === null) {
     board[1] = "O";
-  } else if (board[5] === "") {
+  } else if (board[5] === null) {
     board[5] = "O";
-  } else if (board[7] === "") {
+  } else if (board[7] === null) {
     board[7] = "O";
-  } else if (board[4] === "") {
+  } else if (board[4] === null) {
     board[4] = "O";
   }
 }

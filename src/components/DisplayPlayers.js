@@ -10,8 +10,14 @@ const DisplayPlayers = ({
   const [playerTwo, setPlayerTwo] = useState("");
   const [showOne, setShowOne] = useState(false);
   const [showTwo, setShowTwo] = useState(false);
-  const [computer, setComputer] = useState(true);
   const [showButton, setShowButton] = useState(true);
+  const [secondPlayer, setSecondPlayer] = useState(false);
+
+  const twoPlayersButton = () => {
+    handleTwoPlayersButton(false);
+    setShowButton(false);
+    setSecondPlayer(true);
+  };
 
   const submitPlayerOne = (e) => {
     e.preventDefault();
@@ -26,13 +32,6 @@ const DisplayPlayers = ({
     setShowTwo(true);
   };
 
-  const twoPlayersButton = (e) => {
-    e.preventDefault();
-    setComputer(false);
-    handleTwoPlayersButton(computer);
-    setShowButton(false);
-  };
-
   const resetGame = (e) => {
     e.preventDefault();
     setPlayerOne("");
@@ -40,7 +39,7 @@ const DisplayPlayers = ({
     setShowOne(false);
     setShowTwo(false);
     setShowButton(true);
-    setComputer(true);
+    setSecondPlayer(false);
     reset();
   };
 
@@ -73,7 +72,8 @@ const DisplayPlayers = ({
             </div>
           ) : null}
         </div>
-        {computer ? null : (
+
+        {secondPlayer && (
           <div>
             {showTwo ? null : (
               <form onSubmit={submitPlayerTwo}>

@@ -16,8 +16,12 @@ const Game = () => {
   const [playerTwo, setPlayerTwo] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
-  const [computer, setComputer] = useState(false);
+  const [computer, setComputer] = useState(true);
   const winner = calculateWinner(board);
+
+  const twoPlayers = (value) => {
+    setComputer(value);
+  };
 
   const handleMove = (value) => {
     try {
@@ -31,12 +35,14 @@ const Game = () => {
       if (boardCopy[index]) {
         throw new Error("That field is taken");
       }
-
       boardCopy[index] = xIsNext ? "X" : "O";
-
       setBoard(boardCopy);
-      setXisNext(!xIsNext);
-      // computer && computerPlayer(boardCopy);
+      if (computer) {
+        computerPlayer(boardCopy);
+      }
+      if (!computer) {
+        setXisNext(!xIsNext);
+      }
     } catch (err) {
       setError(`Invalid input - ${err}`);
     }
@@ -44,7 +50,9 @@ const Game = () => {
 
   const handleInputOne = (value) => {
     setPlayerOne(value);
-    computer && setShow(true);
+    if (computer) {
+      setShow(true);
+    }
   };
 
   const handleInputTwo = (value) => {
@@ -59,10 +67,7 @@ const Game = () => {
     setShow(false);
     setError("");
     setXisNext(true);
-  };
-
-  const twoPlayers = (value) => {
-    setComputer(value);
+    setComputer(true);
   };
 
   return (
